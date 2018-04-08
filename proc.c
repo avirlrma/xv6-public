@@ -532,3 +532,21 @@ procdump(void)
     cprintf("\n");
   }
 }
+int
+settickets(int num){
+   struct cpu *c;
+   struct proc *p;
+   pushcli();
+   c = mycpu();
+   p = c->proc;
+   popcli();
+   int x;
+   num = argint(0, &x);
+  if(num < 0)
+    return -1;
+  if(x< 1)
+    return -1;
+
+  p->tickets += x;
+return 0;  
+}
